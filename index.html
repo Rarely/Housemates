@@ -8,8 +8,11 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' type='text/css' href='fullcalendar.css' />
 
     <!-- JavaScript -->
+      <script type='text/javascript' src='jquery.js'></script>
+      <script type='text/javascript' src='fullcalendar.js'></script>
       <script type="text/JavaScript" src="jquery-1.10.2.min.js"></script>   
       <script type="text/JavaScript" src="sumbit.js"></script>  
 
@@ -19,6 +22,19 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+      <script> 
+
+    $(document).ready(function() {
+
+    // page is now ready, initialize the calendar...
+
+    $('#calendar').fullCalendar({
+        // put your options and callbacks here
+    })
+
+});</script>
+
   </head>
   <body>
     <div class="navbar navbar-inverse narbar-fixed-top" role="navigation">
@@ -93,7 +109,7 @@
       </div>
 
       <div class="col-md-4">
-        calendar here
+       <div id='calendar'></div>
       </div>
     </div>
 
