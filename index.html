@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- JavaScript -->
+      <script type="text/JavaScript" src="jquery-1.10.2.min.js"></script>   
+      <script type="text/JavaScript" src="sumbit.js"></script>  
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="navbar navbar-inverse narbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class ="navbar-header"
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <div class ="navbar-brand"> Housemates </div>
+        </div>
+      </div>
+    </div>
+
+  <div class= "jumbotron">
+    <div class="container">
+      <h2> Welcome to Housemates Jim!</h2>
+      <p>  This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="col-md-4">
+          <div class= "table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>People of the House</th>
+                </tr>
+              </thead>
+              <tbody>
+                <div id="housemateTable">
+                  <tr><td>Jim</td></tr>
+                  <tr><td>Peter</td></tr>
+                  <tr><td>Mike</td></tr>
+                </div>
+              </tbody>
+            </table>
+                <!-- Button trigger modal -->
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                  Add a Housemate
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="addItem" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="addItem" name"addItem">Add a Housemate</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form role ="form">
+                          <div class="form-group">
+                            <input type="text" class="form-control" id="" placeholder="Housemate's Name">
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <input type="button" class="btn btn-primary" name ="add" value"add">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>             
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          Add the chore here
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        calendar here
+      </div>
+    </div>
+
+    <div class="row">
+
+  </div>  
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+
+</html>
