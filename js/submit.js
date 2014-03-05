@@ -1,7 +1,7 @@
 jQuery(function($){
-    $('input[name="add"]').click(function() {
-      	value = $('input[name="addItem"]').val();
-             	$('td tr:last').after("<tr><td>" + value + "</td></tr>");
-             	$('input[name="addItem"]').val("");
-    });
+	$('button[name="addHousemate"]').click(function() {
+	    var value = $('input[id="addHousemate"]').val();
+	    $('tr td:last').append("<tr><td>" + value + "</td></tr>");
+	    $('input[id="addHousemate"]').val('');
+	});
 });
