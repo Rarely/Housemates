@@ -41,7 +41,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8">
-          <div class="col-md-4">
+          <div class="col-md-6">
               <div id="contacts">
                 <div class="table-responsive">
                   <table class="table table-hover">
@@ -80,7 +80,7 @@
             </div>
           </div>    
         </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div id="chorelist">
                 <div class="table-responsive">
                   <table class="table table-hover">
@@ -93,12 +93,14 @@
                       <tr>
                         <td class="id2" style="display:none;">1</td>
                         <td class="chore">Kitchen</td>
+                        <td class="time">Bi-weekly</td>                             
                         <td class="edit"><button class="btn btn-link edit-chore-item-btn"><span class="glyphicon glyphicon-pencil"></span></button></td>
                         <td class="remove"><button class="btn btn-link remove-chore-item-btn"><span class="glyphicon glyphicon-trash"></span></button></td>
                       </tr>
                       <tr>
                         <td class="id2" style="display:none;">2</td>
                         <td class="chore">Bathroom</td>
+                        <td class="time">Weekly</td>                        
                         <td class="edit"><button class="btn btn-link edit-chore-item-btn"><span class="glyphicon glyphicon-pencil"></span></button></td>
                         <td class="remove"><button class="btn btn-link remove-chore-item-btn"><span class="glyphicon glyphicon-trash"></span></button></td>
                       </tr>
@@ -108,6 +110,13 @@
                     <td class="chore">
                       <input type="hidden" id="id-chore-field" />
                       <input type="text" id="chore-field" placeholder="Chore" />
+                    </td>
+                    <td>
+                      <select class="form-control" id="time-field">
+                          <option value="Weekly">Weekly</option>
+                          <option value="Bi-Weekly">Bi-Weekly</option>
+                          <option value="Monthly">Monthly</option>  
+                      </select>
                     </td>
                     <td class="add">
                       <button id="add-chore-btn" class="btn btn-link"><span class="glyphicon glyphicon-plus"></span></button>  
