@@ -39,8 +39,7 @@
                   <table class="table table-hover">
                     <thead>
                       <tr>
-                        <h3>List of Housemates</h3>
-                        <h5>Add, update or remove your housemates!</small></h5>
+                        <h3>List of Housemates<small><br>Add, update or remove your housemates!</small></h3>
                       </tr>
                     </thead>
                     <tbody class="list">
@@ -78,10 +77,7 @@
                 <div class="table-responsive">
                   <table class="table table-hover">
                     <thead>
-                      <tr>
-                        <h3>List of Chores</h3>
-                        <h5>Add, update or remove the list of chores!</small></h5>                        
-                      </tr>
+                      <tr><h3>List of Chores<small><br>Add, update or remove the list of chores!</small></h3></tr>
                     </thead>
                     <tbody class="list">
                       <tr>
@@ -122,26 +118,62 @@
           </div>    
         </div>
       </div>
-      <div ="row">
-      <h4>Choose a type of Schedule</h4>
+      <div class="row">
+      <h3>Choose a type of Schedule</h3>
         <div class="radio">
           <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-            Rotational Schedule - A schedule that rotates based on the timeframe of a given chore
+            <input type="radio" name="optionsRadios" onClick="toggleTables('2')" id="customize_1" value="option1" checked>
+            <h4>Rotational Schedule <small>A schedule that rotates based on the timeframe of a given chore</small></h4>
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-            Fixed Schedule - A schedule that is fixed and as housemates assign to
+            <input type="radio" name="optionsRadios" id="standard_1" onClick="toggleTables('1')" value="option2">
+            <h4>Fixed Schedule <small>A schedule that is fixed and as housemates assign to</small></h4>
           </label>
         </div>
       </div>
-  </div>
+      <div class="row">
+        <div class="col-md-4">
+          <table width="100%" class="imagetable table table-hover" cellpadding="0" cellspacing="0" id="customize">
+            <tr><td></td></tr>                   
+          </table>
+          <div id="chorelist" class="table-responsive"> 
+            <table width="100%" class="imagetable table table-hover" cellpadding="0" cellspacing="0" id="standard" style="display: none">
+              <tr>
+                <td class="id2" style="display:none;">1</td>
+                <td class="chore">Kitchen</td>
+                <td class="time">Bi-weekly</td>
+              </tr>
+              <tr>
+               <td class="id2" style="display:none;">2</td>
+               <td class="chore">Bathroom</td>
+               <td class="time">Weekly</td>
+              </tr>                 
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+
+
+    <script type=text/javascript>
+      function toggleTables(which)
+      {
+          var isCustomize = document.getElementById('customize_1').checked; 
+          var isStandard = document.getElementById('standard_1').checked;  
+          
+          var customize = document.getElementById('customize'); 
+          var standard = document.getElementById('standard');    
+             
+          customize.style.display = isCustomize  ? 'table' : 'none';
+          standard.style.display = isStandard  ? 'table' : 'none';
+      }
+    </script>
 
     <script type="text/javascript">
       var options = {
