@@ -1,0 +1,63 @@
+    <script type="text/javascript">
+      var options = {
+          valueNames: [ 'id', 'name']
+        };
+
+        // Init list
+        var contactList = new List('contacts', options);
+
+        var idField = $('#id-field'),
+            nameField = $('#name-field'),
+            addHousemateBtn = $('#add-housemate-btn'),
+            editHousemateBtn = $('#edit-btn').hide(),
+            removeBtns = $('.remove-item-btn'),
+            editHousemateBtns2 = $('.edit-item-btn');
+
+        // Sets callbacks to the buttons in the list
+        refreshCallbacks();
+
+        addHousemateBtn.click(function() {
+          contactList.add({
+            id: Math.floor(Math.random()*110000),
+            name: nameField.val(),
+          });
+          clearFields();
+          refreshCallbacks();
+        });
+
+        editHousemateBtn.click(function() {
+          var item = contactList.get('id', idField.val())[0];
+          item.values({
+            id:idField.val(),
+            name: nameField.val(),
+          });
+          clearFields();
+          editHousemateBtn.hide();
+          addHousemateBtn.show();
+        });
+
+        function refreshCallbacks() {
+          // Needed to add new buttons to jQuery-extended object
+          removeBtns = $(removeBtns.selector);
+          editHousemateBtns2 = $(editHousemateBtns2.selector);
+          
+          removeBtns.click(function() {
+            var itemId = $(this).closest('tr').find('.id').text();
+            contactList.remove('id', itemId);
+          });
+          
+          editHousemateBtns2.click(function() {
+            var itemId = $(this).closest('tr').find('.id').text();
+            var itemValues = contactList.get('id', itemId)[0].values();
+            idField.val(itemValues.id);
+            nameField.val(itemValues.name);
+            
+            editHousemateBtn.show();
+            addHousemateBtn.hide();
+          });
+        }
+
+        function clearFields() {
+          nameField.val('');
+        }
+    </script>
