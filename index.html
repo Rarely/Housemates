@@ -40,6 +40,7 @@
                     <thead>
                       <tr>
                         <h3>List of Housemates</h3>
+                        <h5>Add, update or remove your housemates!</small></h5>
                       </tr>
                     </thead>
                     <tbody class="list">
@@ -79,6 +80,7 @@
                     <thead>
                       <tr>
                         <h3>List of Chores</h3>
+                        <h5>Add, update or remove the list of chores!</small></h5>                        
                       </tr>
                     </thead>
                     <tbody class="list">
@@ -114,14 +116,27 @@
                       <button id="add-chore-btn" class="btn btn-link"><span class="glyphicon glyphicon-plus"></span></button>  
                       <button id="edit-chore-btn" class="btn btn-link"><span class="glyphicon glyphicon-ok"></span></button>
                     </td>
-                  </table>
-                <div class="table-responsive">         
+                  </table>     
               </div>
             </div>
           </div>    
         </div>
       </div>
-    </div>
+      <div ="row">
+      <h4>Choose a type of Schedule</h4>
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+            Rotational Schedule - A schedule that rotates based on the timeframe of a given chore
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+            Fixed Schedule - A schedule that is fixed and as housemates assign to
+          </label>
+        </div>
+      </div>
   </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
