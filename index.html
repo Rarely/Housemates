@@ -214,6 +214,7 @@
           housemates.push(nameField.val());
           clearHousemateFields();
           refreshHousemateCallbacks();
+          populateDropdown();
           nextHousemateId = Math.floor(nextHousemateId + 1);
         });
 
@@ -317,6 +318,9 @@
 
         function populateDropdown() {
           var select = document.getElementById('assign-field');
+          for (i=0;i<select.length;  i++) {
+               select.remove(i);
+             }
           for (var i = 0; i < housemates.length; i++) {
             var opt = housemates[i];
             var el = document.createElement("option");
