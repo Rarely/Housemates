@@ -99,8 +99,8 @@
                   <table>
                     <td>
                       <div id="assign">
-                        <select id="assign-field" class="form-control" >
-                          <option>Assign a housemate to</option>
+                        <select id="assign-field" class="form-control" value='Assign Housemate'>
+                          <option value="Assign a Housemate">Assign a Housemate</option>
                         </select>
                       </div>
                     </td>                    
@@ -169,18 +169,14 @@
           valueNames: [ 'id', 'name']
         };
 
-      var choreRotationalOptions = {
-          valueNames: [ 'id2','chore', 'time']
-        };
 
-      var choreFixedOptions = {
+      var choreOptions = {
           valueNames: [ 'id2','chore', 'time', 'assign']
         };      
 
         // Init list
         var contactList = new List('contacts', housemateOptions);
-        var choreListRotational = new List('chorelistrotational', choreRotationalOptions);
-        var choreListFixed = new List('chorelistfixed', choreFixedOptions);
+        var choreList = new List('chorelistfixed', choreOptions);
 
         var idField = $('#id-field'),
             nameField = $('#name-field'),
@@ -212,20 +208,14 @@
             name: nameField.val(),
           });
           housemates.push(nameField.val());
+          addDropdown(nameField.val());
           clearHousemateFields();
           refreshHousemateCallbacks();
-          populateDropdown();
           nextHousemateId = Math.floor(nextHousemateId + 1);
         });
 
         addChoreBtn.click(function() {
-          choreListRotational.add({
-            id2: Math.floor(nextChoreId + 1),
-            chore: choreField.val(),
-            time: timeField.val(),
-            assign: nameField.val()            
-          });
-          choreListFixed.add({
+          choreList.add({
             id2: Math.floor(nextChoreId + 1),
             chore: choreField.val(),
             time: timeField.val(),
@@ -249,7 +239,7 @@
         });
 
         editChoreBtn.click(function() {
-          var item = choreListRotational.get('id2', idChoreField.val())[0];
+          var item = choreList.get('id2', idChoreField.val())[0];
           item.values({
             id2:idChoreField.val(),
             chore:choreField.val(),
@@ -269,8 +259,16 @@
           
           removeBtns.click(function() {
             var itemId = $(this).closest('tr').find('.id').text();
+            var itemValues = contactList.get('id', itemId)[0].values();
+            for (var i = 0; i < housemates.length; i++) {
+              if(housemates[i] == itemValues.name){
+                housemates.splice(i,1);
+              }
+            }
+            removeDropdown(itemValues.name);            
             contactList.remove('id', itemId);
-          });
+
+        });
           
           editBtns.click(function() {
             var itemId = $(this).closest('tr').find('.id').text();
@@ -290,8 +288,9 @@
           
           removeChoreBtns.click(function() {
             var itemId = $(this).closest('tr').find('.id2').text();
-            choreListRotational.remove('id2', itemId);
-            choreListFixed.remove('id2',itemId);
+            choreList.remove('id2', itemId);
+            populateDropdown();
+
           });
           
           editChoreBtns.click(function() {
@@ -318,9 +317,6 @@
 
         function populateDropdown() {
           var select = document.getElementById('assign-field');
-          for (i=0;i<select.length;  i++) {
-               select.remove(i);
-             }
           for (var i = 0; i < housemates.length; i++) {
             var opt = housemates[i];
             var el = document.createElement("option");
@@ -330,6 +326,23 @@
           }
         }
 
+        function removeDropdown(name){
+          var select = document.getElementById('assign-field');
+          for (i = 1; i < select.length; i++) {
+             if (select.options[i].value==name) {
+              select.remove(i);
+             }
+           }
+        }
+
+        function addDropdown(name){
+          var select = document.getElementById('assign-field');
+            var opt = name;
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+        }        
     </script>
   </body>
 </html>
