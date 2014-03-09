@@ -99,7 +99,7 @@
                   <table>
                     <td>
                       <div id="assign">
-                        <select id="dropdown" class="form-control">
+                        <select id="assign-field" class="form-control" >
                           <option>Assign a housemate to</option>
                         </select>
                       </div>
@@ -191,6 +191,7 @@
             idChoreField = $('#id-chore-field'),
             choreField = $('#chore-field'),
             timeField = $('#time-field'),
+            assignField = $('#assign-field'),
             addChoreBtn = $('#add-chore-btn'),
             editChoreBtn = $('#edit-chore-btn').hide(),
             removeChoreBtns = $('.remove-chore-item-btn'),
@@ -227,7 +228,7 @@
             id2: Math.floor(nextChoreId + 1),
             chore: choreField.val(),
             time: timeField.val(),
-            assign: nameField.val()
+            assign: assignField.val()
           });          
           clearChoreFields();
           refreshChoreCallbacks();
@@ -252,6 +253,7 @@
             id2:idChoreField.val(),
             chore:choreField.val(),
             time:timeField.val(),
+            assign: assignField.val()
           });
           clearChoreFields();
           editChoreBtn.hide();
@@ -297,6 +299,7 @@
             idChoreField.val(itemValues.id2);
             choreField.val(itemValues.chore);
             timeField.val(itemValues.time);
+            assignField.val(itemValues.assign);
             
             editChoreBtn.show();
             addChoreBtn.hide();
@@ -313,7 +316,7 @@
         }
 
         function populateDropdown() {
-          var select = document.getElementById('dropdown');
+          var select = document.getElementById('assign-field');
           for (var i = 0; i < housemates.length; i++) {
             var opt = housemates[i];
             var el = document.createElement("option");
