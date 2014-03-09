@@ -99,7 +99,7 @@
                   <table>
                     <td>
                       <div id="assign">
-                        <select id="selectNumber" class="form-control">
+                        <select id="dropdown" class="form-control">
                           <option>Assign a housemate to</option>
                         </select>
                       </div>
@@ -202,6 +202,7 @@
         // Sets callbacks to the buttons in the list
         refreshHousemateCallbacks();
         refreshChoreCallbacks();
+        populateDropdown();
 
         //Add Butttons
         addBtn.click(function() {
@@ -309,6 +310,17 @@
         function clearChoreFields() {
           choreField.val('');
           timeField.val('');
+        }
+
+        function populateDropdown() {
+          var select = document.getElementById('dropdown');
+          for (var i = 0; i < housemates.length; i++) {
+            var opt = housemates[i];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+          }
         }
 
     </script>
