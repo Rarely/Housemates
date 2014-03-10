@@ -138,6 +138,20 @@
             </div>
           </div>  
       </div>
+      <div class='row'>
+        <div id="fixed-schedule">
+          <table class="table table-hover">
+            <thead>
+              <td><h4>Chore</h4></td>
+              <td><h4>Last Week</h4></td>
+              <td><h4>This Week</h4></td>
+              <td><h4>Next Week</h4></td>
+            </thead>
+            <tbody>
+            </tbody>  
+          </table>
+        </div>     
+      </div>  
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -176,7 +190,8 @@
 
         // Init list
         var contactList = new List('contacts', housemateOptions);
-        var choreList = new List('chorelistfixed', choreOptions);
+        var choreListFixed = new List('chorelistfixed', choreOptions);
+        var choreListRotational = new List('chorelistrotational', choreOptions);        
 
         var idField = $('#id-field'),
             nameField = $('#name-field'),
@@ -215,12 +230,18 @@
         });
 
         addChoreBtn.click(function() {
-          choreList.add({
+          choreListFixed.add({
             id2: Math.floor(nextChoreId + 1),
             chore: choreField.val(),
             time: timeField.val(),
             assign: assignField.val()
-          });          
+          });
+          choreListRotational.add({
+            id2: Math.floor(nextChoreId + 1),
+            chore: choreField.val(),
+            time: timeField.val(),
+            assign: assignField.val()
+          });              
           clearChoreFields();
           refreshChoreCallbacks();
           nextChoreId = Math.floor(nextChoreId + 1);
@@ -239,7 +260,7 @@
         });
 
         editChoreBtn.click(function() {
-          var item = choreList.get('id2', idChoreField.val())[0];
+          var item = choreListFixed.get('id2', idChoreField.val())[0];
           item.values({
             id2:idChoreField.val(),
             chore:choreField.val(),
@@ -288,14 +309,15 @@
           
           removeChoreBtns.click(function() {
             var itemId = $(this).closest('tr').find('.id2').text();
-            choreList.remove('id2', itemId);
+            choreListFixed.remove('id2', itemId);
+            choreListRotational.remove('id2', itemId);
             populateDropdown();
 
           });
           
           editChoreBtns.click(function() {
             var itemId = $(this).closest('tr').find('.id2').text();
-            var itemValues = choreList.get('id2', itemId)[0].values();
+            var itemValues = choreListFixed.get('id2', itemId)[0].values();
             idChoreField.val(itemValues.id2);
             choreField.val(itemValues.chore);
             timeField.val(itemValues.time);
