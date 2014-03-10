@@ -32,7 +32,7 @@
     </div>
     <div class="container">
       <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
               <div id="contacts">
                 <div class="table-responsive">
                   <table class="table table-hover">
@@ -45,7 +45,6 @@
                       <tr>
                         <td class="id" style="display:none;">1</td>
                         <td class="name">Jonny</td>
-                        <td class="edit"><button class="btn btn-link edit-item-btn"><span class="glyphicon glyphicon-pencil"></span></button></td>
                         <td class="remove"><button class="btn btn-link remove-item-btn"><span class="glyphicon glyphicon-trash"></span></button></td>
                       </tr>
                     </tbody>
@@ -57,7 +56,6 @@
                     </td>
                     <td class="add">
                       <button id="add-btn" class="btn btn-link"><span class="glyphicon glyphicon-plus"></span></button>  
-                      <button id="edit-btn" class="btn btn-link"><span class="glyphicon glyphicon-ok  "></span></button>
                     </td>
                   </table>
                 <div class="table-responsive">         
@@ -65,84 +63,85 @@
             </div>
           </div>    
         </div>
-            <div class="col-md-6">
-              <h3>List of Chores<small><br>Add, update or remove the list of chores!</small></h3>
-                <div class="table-responsive">
-                  <div id="chorelistrotational">                  
-                  <table class="table table-hover">
-                    <tbody class="list" id="customize">
-                        <tr>
-                          <td class="id2" style="display:none;">1</td>
-                          <td class="chore">Kitchen</td>
-                          <td class="time">Bi-weekly</td>                             
-                          <td class="edit"><button class="btn btn-link edit-chore-item-btn"><span class="glyphicon glyphicon-pencil"></span></button></td>
-                          <td class="remove"><button class="btn btn-link remove-chore-item-btn"><span class="glyphicon glyphicon-trash"></span></button></td>
-                        </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div id="chorelistfixed">
-                  <table class="table table-hover">                           
-                    <tbody class="list" id="standard">
-                       <tr>
-                          <td class="id2" style="display:none;">1</td>
-                          <td class="chore">Kitchen</td>
-                          <td class="time">Bi-weekly</td>
-                          <td class="assign">Jonny</td>                             
-                          <td class="edit"><button class="btn btn-link edit-chore-item-btn"><span class="glyphicon glyphicon-pencil"></span></button></td>
-                          <td class="remove"><button class="btn btn-link remove-chore-item-btn"><span class="glyphicon glyphicon-trash"></span></button></td>
-                        </tr>
-                      </div>
-                    </tbody>
-                  </table>
-                </div>      
-                  <table>
-                    <td>
-                      <div id="assign">
-                        <select id="assign-field" class="form-control" value='Assign Housemate'>
-                          <option value="Assign a Housemate">Assign a Housemate</option>
-                        </select>
-                      </div>
-                    </td>                    
-                    <td class="chore">
-                      <input type="hidden" id="id-chore-field"/>
-                      <input type="text" id="chore-field" placeholder="Chore"/>
-                    </td>
-                    <td>
-                      <select class="form-control" id="time-field">
-                          <option value="Weekly">Weekly</option>
-                          <option value="Bi-Weekly">Bi-Weekly</option>
-                          <option value="Monthly">Monthly</option>  
-                      </select>
-                    </td>
-                    <td class="add">
-                      <button id="add-chore-btn" class="btn btn-link"><span class="glyphicon glyphicon-plus"></span></button>  
-                      <button id="edit-chore-btn" class="btn btn-link"><span class="glyphicon glyphicon-ok"></span></button>
-                    </td>
-                  </table>      
-              </div>
-          </div>
-          <div class="col-md-4">
-            <h3>Choose a type of Schedule</h3>
-            <div class="radio">
-              <label>
-                <input type="radio" name="optionsRadios" id="customize_1" onClick="toggleTables('2'), hideAssign()" value="option1">
-                <h4>Rotational Schedule <small>A schedule that rotates based on the timeframe of a given chore</small></h4>
-              </label>
-            </div>
-            <div class="radio">
-              <label>
-                <input type="radio" name="optionsRadios" id="standard_1" onClick="toggleTables('1'), showAssign()" value="option2" checked>
-                <h4>Fixed Schedule <small>A schedule that is fixed and as housemates assign to</small></h4>
-              </label>
-            </div>
+        <div class="col-md-6">
+          <div id="rotation-schedule">
           </div>  
-      </div>
-      <div class='row'>
-        <div id="rotation-schedule">
-        </div>     
+        </div>
+      </div>  
+      <div class="row">
+        <div class="col-md-6">       
+          <h3>List of Chores<small><br>Add, update or remove the list of chores!</small></h3>
+          <div class="table-responsive">
+            <div id="chorelistrotational">                  
+              <table class="table table-hover">
+                <tbody class="list" id="customize">
+                  <tr>
+                    <td class="id2" style="display:none;">1</td>
+                    <td class="chore">Kitchen</td>
+                    <td class="time">Bi-weekly</td>                             
+                    <td class="edit"><button class="btn btn-link edit-chore-item-btn"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                    <td class="remove"><button class="btn btn-link remove-chore-item-btn"><span class="glyphicon glyphicon-trash"></span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div id="chorelistfixed">
+              <table class="table table-hover">                           
+                <tbody class="list" id="standard">
+                  <tr>
+                    <td class="id2" style="display:none;">1</td>
+                    <td class="chore">Kitchen</td>
+                    <td class="time">Bi-weekly</td>
+                    <td class="assign">Jonny</td>                             
+                    <td class="edit"><button class="btn btn-link edit-chore-item-btn"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                    <td class="remove"><button class="btn btn-link remove-chore-item-btn"><span class="glyphicon glyphicon-trash"></span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>      
+            <table>
+              <td>
+                <div id="assign">
+                  <select id="assign-field" class="form-control" value='Assign Housemate'>
+                    <option value="Assign a Housemate">Assign a Housemate</option>
+                  </select>
+                </div>
+              </td>                    
+              <td class="chore">
+                <input type="hidden" id="id-chore-field"/>
+                <input type="text" id="chore-field" placeholder="Chore"/>
+              </td>
+              <td>
+                <select class="form-control" id="time-field">
+                  <option value="Weekly">Weekly</option>
+                  <option value="Bi-Weekly">Bi-Weekly</option>
+                  <option value="Monthly">Monthly</option>  
+                </select>
+              </td>
+              <td class="add">
+                <button id="add-chore-btn" class="btn btn-link"><span class="glyphicon glyphicon-plus"></span></button>  
+                <button id="edit-chore-btn" class="btn btn-link"><span class="glyphicon glyphicon-ok"></span></button>
+              </td>
+            </table>      
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h3>Choose a type of Schedule</h3>
+          <div class="radio">
+            <label>
+              <input type="radio" name="optionsRadios" id="customize_1" onClick="toggleTables('2'), hideAssign()" value="option1">
+              <h4>Rotational Schedule <small>A schedule that rotates based on the timeframe of a given chore</small></h4>
+            </label>
+          </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="standard_1" onClick="toggleTables('1'), showAssign()" value="option2" checked>
+            <h4>Fixed Schedule <small>A schedule that is fixed and as housemates assign to</small></h4>
+          </label>
+        </div>
       </div>  
     </div>
+  </div>  
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -186,9 +185,7 @@
         var idField = $('#id-field'),
             nameField = $('#name-field'),
             addBtn = $('#add-btn'),
-            editBtn = $('#edit-btn').hide(),
             removeBtns = $('.remove-item-btn'),
-            editBtns = $('.edit-item-btn'),
             idChoreField = $('#id-chore-field'),
             choreField = $('#chore-field'),
             timeField = $('#time-field'),
@@ -220,6 +217,8 @@
           clearHousemateFields();
           refreshHousemateCallbacks();
           nextHousemateId = Math.floor(nextHousemateId + 1);
+          removeTableRows();
+          addTable();  
         });
 
         addChoreBtn.click(function() {
@@ -239,19 +238,9 @@
           clearChoreFields();
           refreshChoreCallbacks();
           nextChoreId = Math.floor(nextChoreId + 1);
+          removeTableRows();
+          addTable();  
         });        
-
-        //Edit Buttons
-        editBtn.click(function() {
-          var item = contactList.get('id', idField.val())[0];
-          item.values({
-            id:idField.val(),
-            name: nameField.val()
-          });
-          clearHousemateFields();
-          editBtn.hide();
-          addBtn.show();
-        });
 
         editChoreBtn.click(function() {
           var item = choreListFixed.get('id2', idChoreField.val())[0];
@@ -270,7 +259,6 @@
         function refreshHousemateCallbacks() {
           // Needed to add new buttons to jQuery-extended object
           removeBtns = $(removeBtns.selector);
-          editBtns = $(editBtns.selector);
           
           removeBtns.click(function() {
             var itemId = $(this).closest('tr').find('.id').text();
@@ -280,20 +268,11 @@
                 housemates.splice(i,1);
               }
             }
-            removeDropdown(itemValues.name);            
+            removeDropdown(itemValues.name); 
+         
             contactList.remove('id', itemId);
 
         });
-          
-          editBtns.click(function() {
-            var itemId = $(this).closest('tr').find('.id').text();
-            var itemValues = contactList.get('id', itemId)[0].values();
-            idField.val(itemValues.id);
-            nameField.val(itemValues.name);
-    
-            editBtn.show();
-            addBtn.hide();
-          });
         }
 
         function refreshChoreCallbacks() {
@@ -364,6 +343,7 @@
             el.value = opt;
             select.appendChild(el);
         }
+
         function addTable(){
           createSchedule();
           var myTableDiv = document.getElementById("rotation-schedule")
@@ -372,6 +352,7 @@
 
           table.border = '1'
           table.appendChild(tableBody);
+
 
           var heading = new Array();
               heading[0] = "Chore"
@@ -401,14 +382,23 @@
           myTableDiv.appendChild(table)
         }
 
+        function removeTableRows(){
+          document.getElementById("rotation-schedule").innerHTML = ""
+        }
+
         function createSchedule(){
+          scheduleArray = new Array();
           for(i = 0; i < chores.length; i++){
             tempChore = chores[i]; //tempChore [Kitchen, Weekly]
+            var pos;
+            if(i != 0){
+              pos = i % housemates.length;
+            }else {pos = 0;}
             if(tempChore[1] == "Weekly"){
-              var pos = i;
+
               var tempArray = [tempChore[0]];
               for(j = 0; j < 3; j++){
-                if(pos > housemates.length){
+                if(pos > (housemates.length - 1)){
                   pos = 0;
                 }
                 tempArray.push(housemates[pos]);
@@ -417,32 +407,26 @@
             scheduleArray[i] = tempArray;
             }
             if(tempChore[1] == "Bi-Weekly"){
-              var pos = i;
               var tempArray = [tempChore[0]];
-              for(j = 0; j < 3; j++){
-                if(pos > housemates.length){
-                  pos = 0;
-                }
-                if(j == 0 || j == 2){
-                  tempArray.push(housemates[pos]);
-                }else{
-                  tempArray.push('No Chore this Week');
-                }
-                pos++;
+              tempArray.push(housemates[pos]);
+              pos++;
+              tempArray.push('No Chore this Week');
+              if(pos > (housemates.length-1)){
+                pos = 0;
               }
-            scheduleArray[i] = tempArray;
+              tempArray.push(housemates[pos]);
+              scheduleArray[i] = tempArray;
 
             }
             if(tempChore[1] == "Monthly"){
-              for(j = 0; j < 3; j++){
-                var tempArray = [tempChore[0]];
-                tempArray.push('No Chore this Week');
-                tempArray.push(housemates[i]);
-                tempArray.push('No Chore this Week');            
-              }
+              var tempArray = [tempChore[0]];
+              tempArray.push('No Chore this Week');
+              tempArray.push(housemates[pos]);
+              tempArray.push('No Chore this Week');            
             }
+            scheduleArray[i] = tempArray;
           }
         }
-    </script>
+     </script>
   </body>
 </html>
