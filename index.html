@@ -65,7 +65,9 @@
         </div>
         <div class="col-md-6">
           <div id="rotation-schedule">
-          </div>  
+          </div>
+          <div id="fixed-schedule">
+          </div>    
         </div>
       </div>  
       <div class="row">
@@ -199,13 +201,15 @@
         var nextChoreId = 3;
         var housemates = ['Jonny'];
         var chores = [['Kitchen', 'Bi-Weekly']];
-        var scheduleArray = new Array();       
+        var fixedchores = [['Kitchen','Bi-Weekly','Jonny']]
+        var rotationalScheduleArray = new Array();     
+        var fixedScheduleArray = new Array();          
         // Sets callbacks to the buttons in the list
         refreshHousemateCallbacks();
         refreshChoreCallbacks();
         populateDropdown();
-        addTable();
-
+        createRotationalSchedule();
+        createFixedSchedule();
         //Add Butttons
         addBtn.click(function() {
           contactList.add({
@@ -218,7 +222,8 @@
           refreshHousemateCallbacks();
           nextHousemateId = Math.floor(nextHousemateId + 1);
           removeTableRows();
-          addTable();  
+          createRotationalSchedule();
+          createFixedSchedule();
         });
 
         addChoreBtn.click(function() {
@@ -234,12 +239,14 @@
             time: timeField.val(),
             assign: assignField.val()
           });
-          chores.push([choreField.val(), timeField.val()])              
+          chores.push([choreField.val(), timeField.val()]); 
+          fixedchores.push([choreField.val(), timeField.val(), assignField.val()]);           
           clearChoreFields();
           refreshChoreCallbacks();
           nextChoreId = Math.floor(nextChoreId + 1);
           removeTableRows();
-          addTable();  
+          createRotationalSchedule();
+          createFixedSchedule();
         });        
 
         editChoreBtn.click(function() {
@@ -344,9 +351,13 @@
             select.appendChild(el);
         }
 
-        function addTable(){
-          createSchedule();
-          var myTableDiv = document.getElementById("rotation-schedule")
+        function addTable(type){
+          if(type == 'rotational'){
+            var myTableDiv = document.getElementById("rotation-schedule")
+          }
+          else{
+            var myTableDiv = document.getElementById("fixed-schedule")
+          }
           var table = document.createElement('TABLE')
           var tableBody = document.createElement('TBODY')
 
@@ -369,25 +380,39 @@
                   th.appendChild(document.createTextNode(heading[i]));
                   tr.appendChild(th);
           }
-          //TABLE ROWS
-          for (i = 0; i < scheduleArray.length; i++) {
-              var tr = document.createElement('TR');
-              for (j = 0; j < scheduleArray[i].length; j++) {
-                  var td = document.createElement('TD')
-                  td.appendChild(document.createTextNode(scheduleArray[i][j]));
-                  tr.appendChild(td)
-              }
+          if(type == 'rotational'){
+            //TABLE ROWS
+            for (i = 0; i < rotationalScheduleArray .length; i++) {
+                var tr = document.createElement('TR');
+                for (j = 0; j < rotationalScheduleArray [i].length; j++) {
+                    var td = document.createElement('TD')
+                    td.appendChild(document.createTextNode(rotationalScheduleArray [i][j]));
+                    tr.appendChild(td)
+                }
               tableBody.appendChild(tr);
+            }
+          }
+          else{
+            for (i = 0; i < fixedScheduleArray .length; i++) {
+                var tr = document.createElement('TR');
+                for (j = 0; j < fixedScheduleArray [i].length; j++) {
+                    var td = document.createElement('TD')
+                    td.appendChild(document.createTextNode(fixedScheduleArray [i][j]));
+                    tr.appendChild(td)
+                }
+              tableBody.appendChild(tr);
+            }            
           }  
           myTableDiv.appendChild(table)
         }
 
         function removeTableRows(){
           document.getElementById("rotation-schedule").innerHTML = ""
+          document.getElementById("fixed-schedule").innerHTML = ""          
         }
 
-        function createSchedule(){
-          scheduleArray = new Array();
+        function createRotationalSchedule(){
+          rotationalScheduleArray  = new Array();
           for(i = 0; i < chores.length; i++){
             tempChore = chores[i]; //tempChore [Kitchen, Weekly]
             var pos;
@@ -404,7 +429,7 @@
                 tempArray.push(housemates[pos]);
                 pos++;
               }
-            scheduleArray[i] = tempArray;
+            rotationalScheduleArray [i] = tempArray;
             }
             if(tempChore[1] == "Bi-Weekly"){
               var tempArray = [tempChore[0]];
@@ -415,7 +440,7 @@
                 pos = 0;
               }
               tempArray.push(housemates[pos]);
-              scheduleArray[i] = tempArray;
+              rotationalScheduleArray [i] = tempArray;
 
             }
             if(tempChore[1] == "Monthly"){
@@ -424,8 +449,36 @@
               tempArray.push(housemates[pos]);
               tempArray.push('No Chore this Week');            
             }
-            scheduleArray[i] = tempArray;
+            rotationalScheduleArray [i] = tempArray;
           }
+          addTable('rotational');
+        }
+
+        function createFixedSchedule(){
+          fixedScheduleArray  = new Array();
+          for(i = 0; i < fixedchores.length; i++){
+            tempChore = fixedchores[i]; //tempChore [Kitchen, Weekly]
+            if(tempChore[1] == "Weekly"){
+              var tempArray = [tempChore[0]];
+              tempArray.push(tempChore[2]);
+              tempArray.push(tempChore[2]);
+              tempArray.push(tempChore[2]);                              
+            }
+            if(tempChore[1] == "Bi-Weekly"){
+              var tempArray = [tempChore[0]];
+              tempArray.push(tempChore[2]);
+              tempArray.push('No Chore this Week');
+              tempArray.push(tempChore[2]);                              
+            }
+            if(tempChore[1] == "Monthly"){
+              var tempArray = [tempChore[0]];
+              tempArray.push('No Chore this Week');
+              tempArray.push(housemates[pos]);
+              tempArray.push('No Chore this Week');                              
+            }
+            fixedScheduleArray [i] = tempArray;            
+          }
+          addTable('fixed');
         }
      </script>
   </body>
