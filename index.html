@@ -203,19 +203,24 @@
             removeChoreBtns = $('.remove-chore-item-btn'),
             editChoreBtns = $('.edit-chore-item-btn'); 
 
+        //Idea's for chores
         var nextHousemateId = 3;
         var nextChoreId = 3;
+        //List of housemates, rotational chores and fixed chores
         var housemates = ['Jonny'];
         var chores = [['Kitchen', 'Bi-Weekly']];
-        var fixedchores = [['Kitchen','Bi-Weekly','Jonny']]
+        var fixedchores = [['Kitchen','Bi-Weekly','Jonny']];
+        //List of rotational and fixed chores for tables
         var rotationalScheduleArray = new Array();     
         var fixedScheduleArray = new Array();          
-        // Sets callbacks to the buttons in the list
+
+        //Init setup
         refreshHousemateCallbacks();
         refreshChoreCallbacks();
         populateDropdown();
         createRotationalSchedule();
         createFixedSchedule();
+
         //Add Butttons
         addBtn.click(function() {
           contactList.add({
@@ -302,8 +307,17 @@
                 chores.splice(i,1);
               }
             } 
+            for (var i = 0; i < fixedchores.length; i++) {
+              tempChore = fixedchores[i];
+              if(tempChore[0] == itemValues.chore){
+                fixedchores.splice(i,1);
+              }
+            }             
             choreListFixed.remove('id2', itemId);
             choreListRotational.remove('id2', itemId);
+            removeTableRows();
+            createRotationalSchedule();
+            createFixedSchedule();            
           });
           
           editChoreBtns.click(function() {
