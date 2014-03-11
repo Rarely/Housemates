@@ -156,10 +156,14 @@
           var isStandard = document.getElementById('standard_1').checked;  
           
           var customize = document.getElementById('customize'); 
-          var standard = document.getElementById('standard');    
+          var standard = document.getElementById('standard');
+          var rotation = document.getElementById('rotation-schedule'); 
+          var fixed = document.getElementById('fixed-schedule');                
              
           customize.style.display = isCustomize  ? 'table' : 'none';
           standard.style.display = isStandard  ? 'table' : 'none';
+          rotation.style.display = isCustomize  ? 'table' : 'none';
+          fixed.style.display = isStandard  ? 'table' : 'none';
       }
 
       function showAssign(){
