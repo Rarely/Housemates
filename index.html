@@ -302,7 +302,17 @@
                 housemates.splice(i,1);
               }
             }
-            removeDropdown(itemValues.name); 
+            for (var i = 0; i < fixedchores.length; i++) {
+              tempChore = fixedchores[i];
+              if(tempChore[2] == itemValues.name){
+                  tempChore[2] = "Assign a Housemate";
+                  fixedchores[i] = tempChore;
+              }
+            }
+          removeTableRows();
+          createRotationalSchedule();
+          createFixedSchedule();                
+          removeDropdown(itemValues.name); 
          
             contactList.remove('id', itemId);
 
