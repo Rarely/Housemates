@@ -202,8 +202,8 @@
         var nextChoreId = 3;
         //List of housemates, rotational chores and fixed chores
         var housemates = ['Jonny'];
-        var chores = [['Kitchen', 'Bi-Weekly']];
-        var fixedchores = [['Kitchen','Bi-Weekly','Jonny']];
+        var chores = [['Kitchen', 'Bi-Weekly','',1]];
+        var fixedchores = [['Kitchen','Bi-Weekly','Jonny',1]];
         //List of rotational and fixed chores for tables
         var rotationalScheduleArray = new Array();     
         var fixedScheduleArray = new Array();          
@@ -244,8 +244,8 @@
             time: timeField.val(),
             assign: assignField.val()
           });
-          chores.push([choreField.val(), timeField.val()]); 
-          fixedchores.push([choreField.val(), timeField.val(), assignField.val()]);           
+          chores.push([choreField.val(), timeField.val(),'',Math.floor(nextChoreId + 1)]); 
+          fixedchores.push([choreField.val(), timeField.val(), assignField.val(), Math.floor(nextChoreId + 1)]);           
           clearChoreFields();
           refreshChoreCallbacks();
           nextChoreId = Math.floor(nextChoreId + 1);
@@ -262,6 +262,28 @@
             time:timeField.val(),
             assign: assignField.val()
           });
+
+            for (var i = 0; i < chores.length; i++) {
+              tempChore = chores[i];
+              if(tempChore[3] ==idChoreField.val()){
+                  tempChore[0] = choreField.val();
+                  tempChore[1] = timeField.val();
+                  chores[i] = tempChore;
+              }
+            } 
+            for (var i = 0; i < fixedchores.length; i++) {
+              tempChore = fixedchores[i];
+              if(tempChore[3] == idChoreField.val()){
+                  tempChore[0] = choreField.val();
+                  tempChore[1] = timeField.val();
+                  tempChore[2] = assignField.val();
+                  chores[i] = tempChore;
+              }
+            }   
+          removeTableRows();
+          createRotationalSchedule();
+          createFixedSchedule();  
+
           clearChoreFields();
           editChoreBtn.hide();
           addChoreBtn.show();
@@ -321,21 +343,7 @@
             choreField.val(itemValues.chore);
             timeField.val(itemValues.time);
             assignField.val(itemValues.assign);
-
-            for (var i = 0; i < chores.length; i++) {
-              tempChore = chores[i];
-              if(tempChore[0] == itemValues.chore){
-                  tempChore[1] = itemValues.assign;
-                  chores[i] = tempChore;
-              }
-            } 
-            for (var i = 0; i < fixedchores.length; i++) {
-              tempChore = fixedchores[i];
-              if(tempChore[0] == itemValues.chore){
-                  tempChore[1] = itemValues.assign;
-                  fixedchores[i] = tempChore;
-              }
-            }              
+           
             editChoreBtn.show();
             addChoreBtn.hide();
           });
@@ -500,7 +508,7 @@
             if(tempChore[1] == "Monthly"){
               var tempArray = [tempChore[0]];
               tempArray.push('No Chore');
-              tempArray.push(housemates[pos]);
+              tempArray.push(tempChore[2]);
               tempArray.push('No Chore');                              
             }
             fixedScheduleArray [i] = tempArray;            
