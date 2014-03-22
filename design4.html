@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Housemates</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script type="text/JavaScript" src="js/jquery-1.11.0.min.js"></script>       
+    <script type="text/JavaScript" src="js/submit.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script src="http://listjs.com/no-cdn/list.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="navbar navbar-inverse narbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class ="navbar-header"
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <div class ="navbar-brand"> Housemates </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="col-md-5">
+                  <div class="row well fixed-width">
+            <h3>Choose a type of Schedule</h3>
+            <div class="radio">
+              <label>
+                <input type="radio" name="optionsRadios" id="customize_1" onClick="toggleTables('2'), hideAssign()" value="option1">
+                <h4>Rotational Schedule <small><br>A schedule that rotates based on the timeframe of a given chore</small></h4>
+              </label>
+            </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="optionsRadios" id="standard_1" onClick="toggleTables('1'), showAssign()" value="option2" checked>
+              <h4>Fixed Schedule <small><br>A schedule that is fixed and as housemates assign to</small></h4>
+            </label>
+          </div>
+        </div>
+          <div class="row well">
+           <div id="contacts">
+            <div class="table-responsive">
+              <table class="table table-hover add-padding">
+                <thead>
+                  <tr>
+                    <h3>List of Housemates<small><br>Add, update or remove your housemates!</small></h3>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <tr>
+                    <td class="id" style="display:none;">1</td>
+                    <td class="name">Jonny</td>
+                    <td class="remove"><button class="btn btn-link remove-item-btn"><span class="glyphicon glyphicon-trash"></span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table>
+                <td class="name">
+                  <input type="hidden" id="id-field" />
+                  <input type="text" id="name-field" placeholder="Name" />
+                </td>
+                <td class="add">
+                  <button id="add-btn" class="btn btn-link"><span class="glyphicon glyphicon-plus"></span></button>  
+                </td>
+              </table>   
+            </div>
+           </div>
+          </div>
+      </div>
+      <div class="col-md-6 add-margin">
+        <div class="row well">
+                    <h3> The Cleaning Schedule</h3>
+            <div id="rotation-schedule">
+            </div>
+            <div id="fixed-schedule">
+            </div>    
+
+        </div>    
+        <div class="row well" >       
+          <h3>List of Chores<small><br>Add, update or remove the list of chores!</small></h3>
+            <div id="chorelistrotational">                  
+              <table class="table table-hover table-responsive" id="customize">
+                <tbody class="list">
+                  <tr>
+                    <td class="id2" style="display:none;">1</td>
+                    <td class="chore">Kitchen</td>
+                    <td class="time">Bi-weekly</td>                             
+                    <td class="edit"><button class="btn btn-link edit-chore-item-btn"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                    <td class="remove"><button class="btn btn-link remove-chore-item-btn"><span class="glyphicon glyphicon-trash"></span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div id="chorelistfixed">
+              <table class="table table-hover table-responsive" id="standard">                           
+                <tbody class="list">
+                  <tr>
+                    <td class="id2" style="display:none;">1</td>
+                    <td class="chore">Kitchen</td>
+                    <td class="time">Bi-weekly</td>
+                    <td class="assign">Jonny</td>                             
+                    <td class="edit"><button class="btn btn-link edit-chore-item-btn"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                    <td class="remove"><button class="btn btn-link remove-chore-item-btn"><span class="glyphicon glyphicon-trash"></span></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>      
+            <div class= "row">
+              <div class="col-md-4" id="assign">
+                <select id="assign-field" class="form-control" value='Assign Housemate'>
+                  <option value="Assign a Housemate">Assign Housemate</option>
+                </select>
+              </div>
+              <div class="chore col-md-2 no-padding">
+                <input type="hidden" id="id-chore-field"/>
+                <input class ="input-width" type="text" id="chore-field" placeholder="Chore" />
+              </div>                
+              <div class="col-md-3">
+                <select class="form-control" id="time-field">
+                  <option value="Weekly">Weekly</option>
+                  <option value="Bi-Weekly">Bi-Weekly</option>
+                  <option value="Monthly">Monthly</option>  
+                </select>
+              </div>                              
+              <div class="add col-md-3">
+                <button id="add-chore-btn" class="btn btn-link"><span class="glyphicon glyphicon-plus"></span></button>  
+                <button id="edit-chore-btn" class="btn btn-link"><span class="glyphicon glyphicon-ok"></span></button>
+              </div>
+            </div>      
+        </div>          
+      </div>
+  </div>
+  </body>  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type=text/javascript>
+      function toggleTables(which)
+      {
+          var isCustomize = document.getElementById('customize_1').checked; 
+          var isStandard = document.getElementById('standard_1').checked;  
+          
+          var customize = document.getElementById('customize'); 
+          var standard = document.getElementById('standard');
+          var rotation = document.getElementById('rotation-schedule'); 
+          var fixed = document.getElementById('fixed-schedule');                
+             
+          customize.style.display = isCustomize  ? 'table' : 'none';
+          standard.style.display = isStandard  ? 'table' : 'none';
+          rotation.style.display = isCustomize  ? 'table' : 'none';
+          fixed.style.display = isStandard  ? 'table' : 'none';
+      }
+
+      function showAssign(){
+              document.getElementById("assign").style.visibility = "visible";
+      }
+      function hideAssign(){
+              document.getElementById("assign").style.visibility = "hidden";
+      }
+
+
+      var housemateOptions = {
+          valueNames: [ 'id', 'name']
+        };
+
+
+      var choreOptions = {
+          valueNames: [ 'id2','chore', 'time', 'assign']
+        };      
+
+        // Init list
+        var contactList = new List('contacts', housemateOptions);
+        var choreListFixed = new List('chorelistfixed', choreOptions);
+        var choreListRotational = new List('chorelistrotational', choreOptions);        
+
+        var idField = $('#id-field'),
+            nameField = $('#name-field'),
+            addBtn = $('#add-btn'),
+            removeBtns = $('.remove-item-btn'),
+            idChoreField = $('#id-chore-field'),
+            choreField = $('#chore-field'),
+            timeField = $('#time-field'),
+            assignField = $('#assign-field'),
+            addChoreBtn = $('#add-chore-btn'),
+            editChoreBtn = $('#edit-chore-btn').hide(),
+            removeChoreBtns = $('.remove-chore-item-btn'),
+            editChoreBtns = $('.edit-chore-item-btn'); 
+
+        //Idea's for chores
+        var nextHousemateId = 3;
+        var nextChoreId = 3;
+        //List of housemates, rotational chores and fixed chores
+        var housemates = ['Jonny'];
+        var chores = [['Kitchen', 'Bi-Weekly','',1]];
+        var fixedchores = [['Kitchen','Bi-Weekly','Jonny',1]];
+        //List of rotational and fixed chores for tables
+        var rotationalScheduleArray = new Array();     
+        var fixedScheduleArray = new Array();          
+
+        //Init setup
+        refreshHousemateCallbacks();
+        refreshChoreCallbacks();
+        populateDropdown();
+        createRotationalSchedule();
+        createFixedSchedule();
+
+        //Add Butttons
+        addBtn.click(function() {
+          contactList.add({
+            id: Math.floor(nextHousemateId + 1),
+            name: nameField.val(),
+          });
+          housemates.push(nameField.val());
+          addDropdown(nameField.val());
+          clearHousemateFields();
+          refreshHousemateCallbacks();
+          nextHousemateId = Math.floor(nextHousemateId + 1);
+          removeTableRows();
+          createRotationalSchedule();
+          createFixedSchedule();
+        });
+
+        addChoreBtn.click(function() {
+          choreListFixed.add({
+            id2: Math.floor(nextChoreId + 1),
+            chore: choreField.val(),
+            time: timeField.val(),
+            assign: assignField.val()
+          });
+          choreListRotational.add({
+            id2: Math.floor(nextChoreId + 1),
+            chore: choreField.val(),
+            time: timeField.val(),
+            assign: assignField.val()
+          });
+          chores.push([choreField.val(), timeField.val(),'',Math.floor(nextChoreId + 1)]); 
+          fixedchores.push([choreField.val(), timeField.val(), assignField.val(), Math.floor(nextChoreId + 1)]);           
+          clearChoreFields();
+          refreshChoreCallbacks();
+          nextChoreId = Math.floor(nextChoreId + 1);
+          removeTableRows();
+          createRotationalSchedule();
+          createFixedSchedule();
+        });        
+
+        editChoreBtn.click(function() {
+          var item = choreListFixed.get('id2', idChoreField.val())[0];
+          item.values({
+            id2:idChoreField.val(),
+            chore:choreField.val(),
+            time:timeField.val(),
+            assign: assignField.val()
+          });
+
+            for (var i = 0; i < chores.length; i++) {
+              tempChore = chores[i];
+              if(tempChore[3] ==idChoreField.val()){
+                  tempChore[0] = choreField.val();
+                  tempChore[1] = timeField.val();
+                  chores[i] = tempChore;
+              }
+            } 
+            for (var i = 0; i < fixedchores.length; i++) {
+              tempChore = fixedchores[i];
+              if(tempChore[3] == idChoreField.val()){
+                  tempChore[0] = choreField.val();
+                  tempChore[1] = timeField.val();
+                  tempChore[2] = assignField.val();
+                  chores[i] = tempChore;
+              }
+            }   
+          removeTableRows();
+          createRotationalSchedule();
+          createFixedSchedule();  
+
+          clearChoreFields();
+          editChoreBtn.hide();
+          addChoreBtn.show();
+        });
+   
+
+        function refreshHousemateCallbacks() {
+          // Needed to add new buttons to jQuery-extended object
+          removeBtns = $(removeBtns.selector);
+          
+          removeBtns.click(function() {
+            var itemId = $(this).closest('tr').find('.id').text();
+            var itemValues = contactList.get('id', itemId)[0].values();
+            for (var i = 0; i < housemates.length; i++) {
+              if(housemates[i] == itemValues.name){
+                housemates.splice(i,1);
+              }
+            }
+            for (var i = 0; i < fixedchores.length; i++) {
+              tempChore = fixedchores[i];
+              if(tempChore[2] == itemValues.name){
+                  tempChore[2] = "Assign a Housemate";
+                  fixedchores[i] = tempChore;
+              }
+            }
+          removeTableRows();
+          createRotationalSchedule();
+          createFixedSchedule();                
+          removeDropdown(itemValues.name); 
+         
+            contactList.remove('id', itemId);
+
+        });
+        }
+
+        function refreshChoreCallbacks() {
+          // Needed to add new buttons to jQuery-extended object
+          removeChoreBtns = $(removeChoreBtns.selector);
+          editChoreBtns = $(editChoreBtns.selector);
+          
+          removeChoreBtns.click(function() {
+            var itemId = $(this).closest('tr').find('.id2').text();
+            var itemValues = choreListFixed.get('id2', itemId)[0].values();            
+            for (var i = 0; i < chores.length; i++) {
+              tempChore = chores[i];
+              if(tempChore[0] == itemValues.chore){
+                chores.splice(i,1);
+              }
+            } 
+            for (var i = 0; i < fixedchores.length; i++) {
+              tempChore = fixedchores[i];
+              if(tempChore[0] == itemValues.chore){
+                fixedchores.splice(i,1);
+              }
+            }             
+            choreListFixed.remove('id2', itemId);
+            choreListRotational.remove('id2', itemId);
+            removeTableRows();
+            createRotationalSchedule();
+            createFixedSchedule();            
+          });
+          
+          editChoreBtns.click(function() {
+            var itemId = $(this).closest('tr').find('.id2').text();
+            var itemValues = choreListFixed.get('id2', itemId)[0].values();
+            idChoreField.val(itemValues.id2);
+            choreField.val(itemValues.chore);
+            timeField.val(itemValues.time);
+            assignField.val(itemValues.assign);
+           
+            editChoreBtn.show();
+            addChoreBtn.hide();
+          });
+        }        
+
+        function clearHousemateFields() {
+          nameField.val('');
+        }
+
+        function clearChoreFields() {
+          choreField.val('');
+          timeField.val('');
+        }
+
+        function populateDropdown() {
+          var select = document.getElementById('assign-field');
+          for (var i = 0; i < housemates.length; i++) {
+            var opt = housemates[i];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+          }
+        }
+
+        function removeDropdown(name){
+          var select = document.getElementById('assign-field');
+          for (i = 1; i < select.length; i++) {
+             if (select.options[i].value==name) {
+              select.remove(i);
+             }
+           }
+        }
+
+        function addDropdown(name){
+          var select = document.getElementById('assign-field');
+            var opt = name;
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+        }
+
+        function addTable(type){
+          if(type == 'rotational'){
+            var myTableDiv = document.getElementById("rotation-schedule")
+          }
+          else{
+            var myTableDiv = document.getElementById("fixed-schedule")
+          }
+          var table = document.createElement('TABLE')
+          var tableBody = document.createElement('TBODY')
+
+          table.border = '1'
+          table.appendChild(tableBody);
+
+          var heading = new Array();
+              heading[0] = "Chore"
+              heading[1] = "Last Week"
+              heading[2] = "This Week"
+              heading[3] = "Next Week"
+          var tr = document.createElement('TR');
+          tableBody.appendChild(tr);
+
+              //TABLE COLUMNS
+          for (i = 0; i < heading.length; i++) {
+                  var th = document.createElement('TH')
+                  th.width = '75';
+                  th.appendChild(document.createTextNode(heading[i]));
+                  tr.appendChild(th);
+          }
+          if(type == 'rotational'){
+            //TABLE ROWS
+            for (i = 0; i < rotationalScheduleArray .length; i++) {
+                var tr = document.createElement('TR');
+                for (j = 0; j < rotationalScheduleArray [i].length; j++) {
+                    var td = document.createElement('TD')
+                    td.appendChild(document.createTextNode(rotationalScheduleArray [i][j]));
+                    tr.appendChild(td)
+                }
+              tableBody.appendChild(tr);
+            }
+          }
+          else{
+            for (i = 0; i < fixedScheduleArray .length; i++) {
+                var tr = document.createElement('TR');
+                for (j = 0; j < fixedScheduleArray [i].length; j++) {
+                    var td = document.createElement('TD')
+                    td.appendChild(document.createTextNode(fixedScheduleArray [i][j]));
+                    tr.appendChild(td)
+                }
+              tableBody.appendChild(tr);
+            }            
+          }  
+          myTableDiv.appendChild(table)
+        }
+
+        function removeTableRows(){
+          document.getElementById("rotation-schedule").innerHTML = ""
+          document.getElementById("fixed-schedule").innerHTML = ""          
+        }
+
+        function createRotationalSchedule(){
+          rotationalScheduleArray  = new Array();
+          for(i = 0; i < chores.length; i++){
+            tempChore = chores[i]; //tempChore [Kitchen, Weekly]
+            var pos;
+            if(i != 0){
+              pos = i % housemates.length;
+            }else {pos = 0;}
+            if(tempChore[1] == "Weekly"){
+
+              var tempArray = [tempChore[0]];
+              for(j = 0; j < 3; j++){
+                if(pos > (housemates.length - 1)){
+                  pos = 0;
+                }
+                tempArray.push(housemates[pos]);
+                pos++;
+              }
+            rotationalScheduleArray [i] = tempArray;
+            }
+            if(tempChore[1] == "Bi-Weekly"){
+              var tempArray = [tempChore[0]];
+              tempArray.push(housemates[pos]);
+              pos++;
+              tempArray.push('No Chore');
+              if(pos > (housemates.length-1)){
+                pos = 0;
+              }
+              tempArray.push(housemates[pos]);
+              rotationalScheduleArray [i] = tempArray;
+
+            }
+            if(tempChore[1] == "Monthly"){
+              var tempArray = [tempChore[0]];
+              tempArray.push('No Chore');
+              tempArray.push(housemates[pos]);
+              tempArray.push('No Chore');            
+            }
+            rotationalScheduleArray [i] = tempArray;
+          }
+          addTable('rotational');
+        }
+
+        function createFixedSchedule(){
+          fixedScheduleArray  = new Array();
+          for(i = 0; i < fixedchores.length; i++){
+            tempChore = fixedchores[i]; //tempChore [Kitchen, Weekly]
+            if(tempChore[1] == "Weekly"){
+              var tempArray = [tempChore[0]];
+              tempArray.push(tempChore[2]);
+              tempArray.push(tempChore[2]);
+              tempArray.push(tempChore[2]);                              
+            }
+            if(tempChore[1] == "Bi-Weekly"){
+              var tempArray = [tempChore[0]];
+              tempArray.push(tempChore[2]);
+              tempArray.push('No Chore');
+              tempArray.push(tempChore[2]);                              
+            }
+            if(tempChore[1] == "Monthly"){
+              var tempArray = [tempChore[0]];
+              tempArray.push('No Chore');
+              tempArray.push(tempChore[2]);
+              tempArray.push('No Chore');                              
+            }
+            fixedScheduleArray [i] = tempArray;            
+          }
+          addTable('fixed');
+        }
+     </script>
+  </body>
+</html>

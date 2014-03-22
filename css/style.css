@@ -10,6 +10,10 @@ table td, table th {
 	margin-left: 10px;
 }
 
+.add-margin-right{
+	margin-right: 10px;
+}
+
 .input-width{
 	width: 100px;
 }
@@ -18,4 +22,8 @@ table td, table th {
 	padding-left: 0px;
 	padding-top: 5px;
 	margin-left: 0px;
+}
+
+.fixed-width{
+	width:475px;
 }
